@@ -57,6 +57,8 @@ async function addToGoogleSheet(data) {
   const credentials = JSON.parse(
     Buffer.from(process.env.GOOGLE_CREDENTIALS, "base64").toString("utf-8")
   );
+
+  console.log("datase acas", credentials);
   const auth = new google.auth.GoogleAuth({
     // keyFile: "./leave-submit-ab9aed66637e.json",
     credentials: credentials,
@@ -116,7 +118,8 @@ async function sendReminderEmail(data) {
 
   const mailOptions = {
     from: "sahad@mccollinsmedia.com",
-    to: "sahadmuhammedkm123@gmail.com",
+    to: "meghna@mccollinsmedia.com",
+    cc: "accounts@mccollinsmedia.com",
     subject: "New Leave Request Submitted",
     html: `
     <div style="font-family: Arial, sans-serif; line-height: 1.6;">
