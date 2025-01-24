@@ -54,8 +54,12 @@ export async function POST(request) {
 
 // Function to add data to Google Sheets
 async function addToGoogleSheet(data) {
+  const credentials = JSON.parse(
+    Buffer.from(process.env.GOOGLE_CREDENTIALS, "base64").toString("utf-8")
+  );
   const auth = new google.auth.GoogleAuth({
-    keyFile: "./leave-submit-ab9aed66637e.json", // Replace with the path to your service account credentials
+    // keyFile: "./leave-submit-ab9aed66637e.json",
+    credentials: credentials,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
 
