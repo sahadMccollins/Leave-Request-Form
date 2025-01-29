@@ -7,9 +7,10 @@ import "react-datepicker/dist/react-datepicker.css";
 // import "../styles/LeaveRequestForm.css";
 
 const leaveOptions = [
-  { value: "Casual", label: "Casual Leave" },
-  { value: "Sick", label: "Sick Leave" },
-  { value: "Earned", label: "Earned Leave" },
+  { value: "Annual Leave", label: "Annual Leave" },
+  { value: "Sick Leave", label: "Sick Leave" },
+  { value: "Personal Leave", label: "Personal Leave" },
+  { value: "Compensatory Leave", label: "Compensatory Leave" },
 ];
 import "../../styles/form.css";
 
@@ -117,55 +118,74 @@ export default function LeaveRequestForm({ setEnableForm }) {
   };
 
   return (
-    <div className="form-container">
-      <h1 className="form-title">Leave Request Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name" className="form-label">
-            Full Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="form-textarea"
-            type="text"
-            required
-          />
+    <>
+      <div className="form-container">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "20px",
+            flexWrap: "wrap",
+          }}
+        >
+          <h1 className="form-title" style={{ margin: 0 }}>
+            Leave Request Form
+          </h1>
+          <a href="/public-holidays" className="form-link">
+            View Public Holidays
+          </a>
         </div>
-        <div className="form-group">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="form-textarea"
-            type="email"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="leaveType" className="form-label">
-            Leave Type
-          </label>
-          <Select
-            id="leaveType"
-            options={leaveOptions}
-            value={formData.leaveType}
-            onChange={(option) =>
-              setFormData({ ...formData, leaveType: option })
-            }
-            className="form-select"
-            classNamePrefix="custom-select"
-          />
-        </div>
-        {/* <div className="form-group">
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">
+              Full Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              className="form-textarea"
+              type="text"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="form-textarea"
+              type="email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="leaveType" className="form-label">
+              Leave Type
+            </label>
+            <Select
+              id="leaveType"
+              options={leaveOptions}
+              value={formData.leaveType}
+              onChange={(option) =>
+                setFormData({ ...formData, leaveType: option })
+              }
+              className="form-select"
+              classNamePrefix="custom-select"
+            />
+          </div>
+          {/* <div className="form-group">
           <label htmlFor="startDate" className="form-label">
             Start Date
           </label>
@@ -193,94 +213,91 @@ export default function LeaveRequestForm({ setEnableForm }) {
             required
           />
         </div> */}
-        <div className="form-group date-group">
-          <div className="form-date">
-            <label htmlFor="startDate" className="form-label">
-              Start Date
-            </label>
-            <DatePicker
-              selected={formData.startDate}
-              onChange={(date) => handleDateChange("startDate", date)}
-              dateFormat="dd/MM/yyyy"
-              className="form-input"
-              placeholderText="Select Start Date"
-              id="startDate"
-              required
-            />
+          <div className="form-group date-group">
+            <div className="form-date">
+              <label htmlFor="startDate" className="form-label">
+                Start Date
+              </label>
+              <DatePicker
+                selected={formData.startDate}
+                onChange={(date) => handleDateChange("startDate", date)}
+                dateFormat="dd/MM/yyyy"
+                className="form-input"
+                placeholderText="Select Start Date"
+                id="startDate"
+                required
+              />
+            </div>
+            <div className="form-date">
+              <label htmlFor="endDate" className="form-label">
+                End Date
+              </label>
+              <DatePicker
+                selected={formData.endDate}
+                onChange={(date) => handleDateChange("endDate", date)}
+                dateFormat="dd/MM/yyyy"
+                className="form-input"
+                placeholderText="Select End Date"
+                id="endDate"
+                required
+              />
+            </div>
           </div>
-          <div className="form-date">
-            <label htmlFor="endDate" className="form-label">
-              End Date
-            </label>
-            <DatePicker
-              selected={formData.endDate}
-              onChange={(date) => handleDateChange("endDate", date)}
-              dateFormat="dd/MM/yyyy"
-              className="form-input"
-              placeholderText="Select End Date"
-              id="endDate"
-              required
-            />
-          </div>
-        </div>
 
-        {leaveDays > 0 && (
-          <div className="leave-days">
-            Total Leave Days: <strong>{leaveDays}</strong>
-          </div>
-        )}
-        <div className="form-group">
-          <label htmlFor="reason" className="form-label">
-            Reason for Leave
-          </label>
-          <textarea
-            id="reason"
-            name="reason"
-            value={formData.reason}
-            onChange={(e) =>
-              setFormData({ ...formData, reason: e.target.value })
-            }
-            className="form-textarea"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="remarks" className="form-label">
-            Remarks
-          </label>
-          <textarea
-            id="remarks"
-            name="remarks"
-            value={formData.remarks}
-            onChange={(e) =>
-              setFormData({ ...formData, remarks: e.target.value })
-            }
-            className="form-textarea"
-          />
-        </div>
-        <button
-          type="submit"
-          className={`form-button ${loading ? "loading-btn" : ""}`}
-          disabled={loading}
-        >
-          {loading ? (
-            <div className="spinner"></div> // Spinner when loading is true
-          ) : (
-            "Submit"
+          {leaveDays > 0 && (
+            <div className="leave-days">
+              Total Leave Days: <strong>{leaveDays}</strong>
+            </div>
           )}
-        </button>
+          <div className="form-group">
+            <label htmlFor="reason" className="form-label">
+              Reason for Leave
+            </label>
+            <textarea
+              id="reason"
+              name="reason"
+              value={formData.reason}
+              onChange={(e) =>
+                setFormData({ ...formData, reason: e.target.value })
+              }
+              className="form-textarea"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="remarks" className="form-label">
+              Remarks
+            </label>
+            <textarea
+              id="remarks"
+              name="remarks"
+              value={formData.remarks}
+              onChange={(e) =>
+                setFormData({ ...formData, remarks: e.target.value })
+              }
+              className="form-textarea"
+            />
+          </div>
+          <button
+            type="submit"
+            className={`form-button ${loading ? "loading-btn" : ""}`}
+            disabled={loading}
+          >
+            {loading ? <div className="spinner"></div> : "Submit"}
+          </button>
 
-        {/* <button
+          {/* <button
           style={{ marginTop: "15px", backgroundColor: "gray" }}
           onClick={() => setEnableForm(false)}
           className="form-button"
         >
           Cancel
         </button> */}
-      </form>
-      {successMessage && (
-        <p className="form-success-message">{successMessage}</p>
-      )}
-    </div>
+        </form>
+        {successMessage && (
+          <p className="form-success-message">{successMessage}</p>
+        )}
+      </div>
+    </>
   );
 }
