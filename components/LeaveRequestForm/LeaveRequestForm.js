@@ -122,19 +122,30 @@ export default function LeaveRequestForm({ setEnableForm }) {
       <div className="form-container">
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            // display: "flex",
+            // justifyContent: "space-between",
+            // alignItems: "center",
             marginBottom: "20px",
-            flexWrap: "wrap",
+            // flexWrap: "wrap",
           }}
         >
           <h1 className="form-title" style={{ margin: 0 }}>
             Leave Request Form
           </h1>
-          <a href="/public-holidays" className="form-link">
-            View Public Holidays
-          </a>
+          <div style={{ textAlign: "center" }}>
+            <a href="/public-holidays" className="form-link">
+              View Public Holidays
+            </a>
+            <br />
+            <a
+              style={{ marginTop: "15px" }}
+              href="/leave-form.pdf"
+              className="form-link"
+              download
+            >
+              Download Leave Form
+            </a>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit}>

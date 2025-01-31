@@ -134,8 +134,6 @@ const PublicHolidays = () => {
 
   const holidaysToShow = showUpcoming.value ? upcomingHolidays : holidays;
 
-  console.log("holidaystoshow", holidaysToShow);
-
   return (
     <>
       <div
@@ -195,29 +193,6 @@ const PublicHolidays = () => {
             <br />
 
             <div className="holidays-list">
-              {/* {holidaysToShow.length === 0 ? (
-                <div className="spinner-container">
-                  <div className="spinner"></div>
-                </div>
-              ) : (
-                holidaysToShow.map((holiday, index) => (
-                  <div
-                    className="holiday-item"
-                    key={`${holiday.date.iso}-${index}`}
-                  >
-                    <span className="holiday-name">{holiday.name}</span>
-                    <span className="holiday-date">
-                      {new Date(holiday.date.iso).toLocaleDateString("en-GB", {
-                        weekday: "long",
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </span>
-                  </div>
-                ))
-              )} */}
-
               {holidaysToShow.length === 0 ? (
                 <div className="spinner-container">
                   <div className="spinner"></div>
@@ -232,7 +207,8 @@ const PublicHolidays = () => {
                       <span className="holiday-name">{holiday.name}</span>
                       {holiday.isTBA && (
                         <span className="tba-text">
-                          UAE Government Official Announcement
+                          Date to be confirmed as per the official announcement
+                          by the UAE government
                         </span>
                       )}
                     </div>
