@@ -46,14 +46,14 @@ const HOLIDAYS = {
       name: "National Day",
       date: "2025-12-02",
       note: "Celebrates UAE's formation in 1971",
-      isTBA: false,
-    },
-    {
-      name: "National Day Holiday",
-      date: "2025-12-03",
-      note: "Celebrates UAE's formation in 1971",
       isTBA: true,
     },
+    // {
+    //   name: "National Day Holiday",
+    //   date: "2025-12-03",
+    //   note: "Celebrates UAE's formation in 1971",
+    //   isTBA: true,
+    // },
   ],
   in: [
     {
@@ -228,32 +228,33 @@ const PublicHolidays = () => {
                     className="holiday-item"
                     key={`${holiday.date}-${index}`}
                   >
-                    <div className="holiday-info" style={{ maxWidth: "300px" }}>
+                    <div className="holiday-info">
                       <span className="holiday-name">{holiday.name}</span>
                       {holiday.isTBA && (
                         <span className="tba-text">
-                          Date to be confirmed as per UAE Government
-                          announcement
+                          UAE Government Official Announcement
                         </span>
                       )}
                     </div>
-                    <span className="holiday-date">
-                      {new Date(holiday.date).toLocaleDateString("en-GB", {
-                        weekday: "long",
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </span>
+                    {!holiday.isTBA && (
+                      <span className="holiday-date">
+                        {new Date(holiday.date).toLocaleDateString("en-GB", {
+                          weekday: "long",
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </span>
+                    )}
                   </div>
                 ))
               )}
             </div>
 
             {country === "in" && (
-              <div class="alert">
+              <div className="alert">
                 <svg
-                  class="alert-icon"
+                  className="alert-icon"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -268,7 +269,7 @@ const PublicHolidays = () => {
                   <line x1="12" y1="16" x2="12" y2="12"></line>
                   <line x1="12" y1="8" x2="12.01" y2="8"></line>
                 </svg>
-                <p class="alert-description">
+                <p className="alert-description">
                   <strong>Regional holidays:</strong> Approval from HR is
                   required for recognizing and observing any regional holidays
                   not included in the standard company holiday calendar.
