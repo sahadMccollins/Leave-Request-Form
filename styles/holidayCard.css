@@ -161,3 +161,44 @@ body {
 .go-back-button:hover {
   background-color: #333;
 }
+
+.holiday-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tba-text {
+  font-size: 14px;
+  color: #666;
+  /* font-weight: bold; */
+  margin-top: 4px;
+}
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  margin-top: 16px;
+  background-color: #e6f3ff;
+  border: 1px solid #b3d7ff;
+  border-radius: 4px;
+}
+
+.alert-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  color: #3b82f6;
+}
+
+.alert-description {
+  margin: 0;
+  color: #1e40af;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.alert-description strong {
+  font-weight: 600;
+}
